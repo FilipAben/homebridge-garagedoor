@@ -37,7 +37,6 @@ class GarageDoor {
     private currentState: number;
     private shelly: Shelly;
     private api: API;
-    private intervalHandle: any;
 
     constructor(log: Logging, config: AccessoryConfig, api: API) {
         this.log = log;
@@ -65,7 +64,7 @@ class GarageDoor {
             throw new Error('Invalid IP configuration');
         }
         this.shelly = new Shelly(this.config.ip, this.config.webhookPort, this.log);
-        this.intervalHandle = setInterval(this.pollInput.bind(this), 5000);
+        setInterval(this.pollInput.bind(this), 5000);
     }
 
     async pollInput(): Promise<void> {
