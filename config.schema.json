@@ -1,6 +1,6 @@
 {
-  "pluginAlias": "ExampleHomebridgePlugin",
-  "pluginType": "platform",
+  "pluginAlias": "GarageDoorController",
+  "pluginType": "accessory",
   "singular": true,
   "schema": {
     "type": "object",
@@ -9,7 +9,31 @@
         "title": "Name",
         "type": "string",
         "required": true,
-        "default": "Example Dynamic Platform"
+        "default": "Garage Door"
+      },
+      "ip": {
+        "title": "Shelly IP",
+        "type": "string",
+        "required": true,
+        "default": ""
+      },
+      "webhookPort": {
+        "title": "Port for webhook callback",
+        "type": "number",
+        "required": true,
+        "default": 7799
+      },
+      "waitOpen": {
+        "title": "Time to wait for port to be open (seconds)",
+        "type": "number",
+        "required": true,
+        "default": 10
+      },
+      "waitClosed": {
+        "title": "Time to wait for port to be closed(seconds)",
+        "type": "number",
+        "required": true,
+        "default": 20
       }
     }
   }
