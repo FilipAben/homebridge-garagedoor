@@ -81,6 +81,7 @@ class GarageDoor {
                 return;
             }
             this.#setCurrentState(CurrentDoorState.OPEN);
+            this.garageService.setCharacteristic(this.api.hap.Characteristic.TargetDoorState, TargetDoorState.OPEN);
         } else {
             if(this.currentState !== CurrentDoorState.CLOSED && this.currentState !== CurrentDoorState.OPENING) {
                 this.#setCurrentState(CurrentDoorState.CLOSED);
