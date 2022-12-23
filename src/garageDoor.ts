@@ -73,7 +73,7 @@ class GarageDoor {
     }
 
     doorStatus(status: boolean) {
-        if(status) {
+        if(status) { /* Door is open */
             if(this.currentState !== CurrentDoorState.CLOSED) {
                 /* Knowing that the door sensor says it's open is only helpful when the door is fully closed. In the other
                     states (OPENING, OPEN or CLOSING) we don't need to take any action.
@@ -82,7 +82,7 @@ class GarageDoor {
             }
             this.#setCurrentState(CurrentDoorState.OPEN);
             this.garageService.setCharacteristic(this.api.hap.Characteristic.TargetDoorState, TargetDoorState.OPEN);
-        } else {
+        } else { /* Door is closed */
             if(this.currentState !== CurrentDoorState.CLOSED && this.currentState !== CurrentDoorState.OPENING) {
                 this.#setCurrentState(CurrentDoorState.CLOSED);
                 this.garageService.setCharacteristic(this.api.hap.Characteristic.TargetDoorState, TargetDoorState.CLOSED);
@@ -135,9 +135,9 @@ class GarageDoor {
         this.log(`start - setTargetDoorState (${value})`);
         try {
             if (value.valueOf() === TargetDoorState.OPEN) {
-                await this.openDoor();
+                this.openDoor();
             } else if (value.valueOf() === TargetDoorState.CLOSED) {
-                await this.closeDoor();
+                this.closeDoor();
             }
             callback && callback(HAPStatus.SUCCESS);
         } catch (err) {
