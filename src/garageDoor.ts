@@ -1,14 +1,14 @@
+import Shelly from './shelly';
 import { CurrentDoorState, TargetDoorState } from 'hap-nodejs/dist/lib/definitions';
 import {
-    AccessoryConfig,
     API,
+    AccessoryConfig,
     CharacteristicSetCallback,
     CharacteristicValue,
     HAPStatus,
     Logging,
     Service,
 } from 'homebridge';
-import Shelly from './shelly';
 import * as net from 'net';
 
 
@@ -139,9 +139,9 @@ class GarageDoor {
             } else if (value.valueOf() === TargetDoorState.CLOSED) {
                 this.closeDoor();
             }
-            callback && callback(HAPStatus.SUCCESS);
+            callback?.(HAPStatus.SUCCESS);
         } catch (err) {
-            callback && callback(HAPStatus.SERVICE_COMMUNICATION_FAILURE);
+            callback?.(HAPStatus.SERVICE_COMMUNICATION_FAILURE);
         }
         this.log('end - setTargetDoorState');
     }

@@ -17,7 +17,7 @@ class Shelly extends EventEmitter {
         this.baseUrl = `http://${ip}`;
         this.httpServer = createServer((request, response) => {
             const queryObject = url.parse(request.url || '', true).query;
-            if(queryObject && queryObject['status'] !== undefined) {
+            if(queryObject?.['status'] !== undefined) {
                 const status: number = parseInt(queryObject['status'] as string);
                 this.emit('statusChanged', status ? true : false);
             }
